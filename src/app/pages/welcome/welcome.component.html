@@ -1,0 +1,25 @@
+<form nz-form [formGroup]="encodeForm">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="plaintext">Plaintext</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+            <textarea rows="4" nz-input formControlName="plaintext" name="plaintext" placeholder="The brown foxe jumps over the lazy doggo"></textarea>
+        </nz-form-control>
+    </nz-form-item >
+    <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="key">Key</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+            <input nz-input formControlName="key" placeholder="pazword" name="key" />
+        </nz-form-control>
+    </nz-form-item >
+    <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="ciphertext">Ciphertext</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+                <pre nz-paragraph>
+In the process of internal desktop applications development, many different design specs and implementations
+would be involved, which might cause designers and developers difficulties and duplication and reduce the
+efficiency of development.
+                </pre>
+        </nz-form-control>
+    </nz-form-item >
+</form>
+
