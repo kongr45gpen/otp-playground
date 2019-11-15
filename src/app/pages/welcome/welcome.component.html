@@ -1,21 +1,38 @@
 <form nz-form [formGroup]="encodeForm">
-    <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="plaintext">Plaintext</nz-form-label>
-        <nz-form-control [nzSpan]="14">
-            <textarea rows="4" nz-input formControlName="plaintext" name="plaintext" placeholder="The brown foxe jumps over the lazy doggo"></textarea>
-        </nz-form-control>
-    </nz-form-item >
-    <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="key">Key</nz-form-label>
-        <nz-form-control [nzSpan]="14">
-            <input nz-input formControlName="key" placeholder="pazword" name="key" />
-        </nz-form-control>
-    </nz-form-item >
-    <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="ciphertext">Ciphertext</nz-form-label>
-        <nz-form-control [nzSpan]="14">
-                <pre nz-paragraph >{{ cipherText }}</pre>
-        </nz-form-control>
-    </nz-form-item >
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="plaintext">Plaintext</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <textarea
+        rows="4"
+        nz-input
+        formControlName="plaintext"
+        name="plaintext"
+        placeholder="The brown foxe jumps over the lazy doggo"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="key">Key</nz-form-label>
+    <nz-form-control [nzSpan]="16">
+      <div nz-row [nzGutter]="8">
+        <div nz-col [nzSpan]="21">
+          <input
+            nz-input
+            formControlName="key"
+            placeholder="password"
+            name="key"
+          />
+        </div>
+        <div nz-col [nzSpan]="3">
+          <button nz-button nzType="default" (click)="generateKey()">Generate</button>
+        </div>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="ciphertext">Ciphertext</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <pre nz-paragraph>{{ cipherText }}</pre>
+    </nz-form-control>
+  </nz-form-item>
 </form>
-

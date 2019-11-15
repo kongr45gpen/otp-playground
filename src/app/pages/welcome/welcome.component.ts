@@ -38,4 +38,14 @@ export class WelcomeComponent implements OnInit {
     }.bind(this))
   }
 
+  generateKey() : void {
+    const utilities = new Utilities()
+
+    // Create a random array with 6-bit ASCII values
+    const input = Array.from({length: 96}, () => Math.floor(Math.random() * 64));
+
+    // Decode the array and show it on the textbox
+    this.encodeForm.get('key').setValue(utilities.decode(input))
+  }
+
 }
