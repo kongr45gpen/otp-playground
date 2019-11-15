@@ -111,7 +111,7 @@ export class Utilities {
    * @param input The input string
    * @returns An array of 6-bit numbers
    */
-  encode(input: string): number[] {
+  encode(input: string): any[] {
     input = input.toLowerCase() // Convert string to lowercase
     let array = [] // An empty array, to be populated with the encoded integers
 
@@ -120,6 +120,9 @@ export class Utilities {
       if (this.reverseCharMap[c] !== undefined) {
         // Only add recognised values
         array.push(this.reverseCharMap[c])
+      } else {
+        // Just push the character
+        array.push(c)
       }
     }
 
@@ -131,14 +134,20 @@ export class Utilities {
    * @param encoded  The input array
    * @returns The decoded string
    */
-  decode(encoded: number[]): string {
+  decode(encoded: any[]): string {
     let decoded = "" // The string to be populated based on the array
 
     for (const n of encoded) {
       // For every element of the array...
-      if (this.charMap[n] !== undefined) {
-        // Only add recognized values
-        decoded += this.charMap[n] // Append the located character to the string
+      if (Number.isInteger(n)) {
+        // This element refers to an encoded value
+        if (this.charMap[n] !== undefined) {
+          // Only add recognized values
+          decoded += this.charMap[n] // Append the located character to the string
+        }
+      } else {
+        // This value was passed raw
+        decoded += n
       }
     }
 
@@ -148,11 +157,17 @@ export class Utilities {
   /**
    * Performs a XOR operation between the numbers of each array
    */
-  bitwiseXor(array1: number[], array2: number[]): number[] {
+  bitwiseXor(array1: any[], array2: any[]): number[] {
     const array = array1.slice() // Clone the array
 
     for (const i in array1) {
-      array[i] = array1[i] ^ array2[i] // Element-wise bitwise XOR
+      // Check both values of the arrays refer to encoded 6-bit ASCII ones
+      if (Number.isInteger(array1[i]) && Number.isInteger(array2[i])) {
+        array[i] = array1[i] ^ array2[i] // Element-wise bitwise XOR
+      } else { // The value was not encoded, it's a raw character
+        // Just copy the raw value
+        array[i] = array1[i]
+      }
     }
 
     return array
