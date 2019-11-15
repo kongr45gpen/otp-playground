@@ -11,6 +11,8 @@ export class WelcomeComponent implements OnInit {
   encodeForm: FormGroup
   cipherText: String
 
+  repeatString: boolean = false
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -23,7 +25,13 @@ export class WelcomeComponent implements OnInit {
       const utilities = new Utilities()
 
       if (val.plaintext && val.key) {
-        const strings = utilities.getMinimumStrings(val.plaintext, val.key)
+        let strings;
+        if (this.repeatString) {
+          const repeatedKey = val.key.repeat(Math.ceil(val.plaintext.length / val.key.length))
+          strings = utilities.getMinimumStrings(val.plaintext, repeatedKey)
+        } else {
+          strings = utilities.getMinimumStrings(val.plaintext, val.key)
+        }
 
         // Encode the text in 5-bit ASCII
         const plainText = utilities.encode(strings[0])
