@@ -22,16 +22,20 @@ export class WelcomeComponent implements OnInit {
     this.encodeForm.valueChanges.subscribe(function(val) {
       const utilities = new Utilities()
 
-      
+      if (val.plaintext && val.key) {
+        const strings = utilities.getMinimumStrings(val.plaintext, val.key)
 
-      if (val.plaintext && val.key && val.plaintext.length == val.key.length) {
-        const plainText = utilities.encode(val.plaintext)
-        const key = utilities.encode(val.key)
+        // Encode the text in 5-bit ASCII
+        const plainText = utilities.encode(strings[0])
+        const key = utilities.encode(strings[1])
 
+        // Perform the encryption
         const cipherText = utilities.bitwiseXor(plainText, key)
+
+        // Decode the encrypted result
         this.cipherText = utilities.decode(cipherText)
       }
     }.bind(this))
   }
-    
+
 }
