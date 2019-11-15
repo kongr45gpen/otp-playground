@@ -7,9 +7,10 @@ import { WelcomeComponent } from './welcome.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputGroupComponent, NzInputModule, NgZorroAntdModule } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [WelcomeRoutingModule, NzFormModule, NzInputModule, FormsModule, ReactiveFormsModule, NgZorroAntdModule],
+  imports: [WelcomeRoutingModule, NzFormModule, NzInputModule, FormsModule, ReactiveFormsModule, NgZorroAntdModule, CommonModule],
   declarations: [WelcomeComponent],
   exports: [WelcomeComponent]
 })

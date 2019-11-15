@@ -12,7 +12,7 @@ export class RepeatedComponent extends WelcomeComponent implements OnInit {
   /**
    *
    */
-  constructor(private formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder) {
     super(formBuilder)
 
     this.repeatString = true
